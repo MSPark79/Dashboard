@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Ops Dashboard</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="dashboard">
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <h1>🤖 Agent Ops</h1>
+      </div>
+
+      <nav id="agent-nav" aria-label="에이전트 탐색">
+        <ul class="nav-list">
+          <li><button type="button" class="nav-link is-active">전체 현황</button></li>
+          <li><button type="button" class="nav-link">Orchestrator</button></li>
+          <li><button type="button" class="nav-link">Planner</button></li>
+          <li><button type="button" class="nav-link">Frontend</button></li>
+          <li><button type="button" class="nav-link">Backend</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div id="content">
+      <header id="top-bar">
+        <div>
+          <h2>대시보드 현황</h2>
+        </div>
+
+        <div id="status-summary" aria-label="상태 요약">
+          <span class="summary-pill running">실행 <strong>0</strong></span>
+          <span class="summary-pill idle">대기 <strong>0</strong></span>
+          <span class="summary-pill error">오류 <strong>0</strong></span>
+          <span class="summary-pill waiting">보류 <strong>0</strong></span>
+        </div>
+      </header>
+
+      <main>
+        <section id="cards" aria-label="에이전트 카드 그리드"></section>
+
+        <section id="tasks">
+          <h3 class="panel-title">작업 목록</h3>
+          <ul id="task-list"></ul>
+        </section>
+
+        <aside id="log-panel" aria-live="polite">
+          <div class="log-header">
+            <h3 class="panel-title">실행 로그</h3>
+            <div class="log-filters" aria-label="로그 필터">
+              <button type="button" class="filter-btn is-active">전체</button>
+              <button type="button" class="filter-btn">INFO</button>
+              <button type="button" class="filter-btn">WARN</button>
+              <button type="button" class="filter-btn">ERROR</button>
+            </div>
+          </div>
+
+          <div id="log-entries" role="log" aria-relevant="additions text"></div>
+
+          <form class="memo-form">
+            <label for="memo">운영 메모</label>
+            <textarea id="memo" name="memo" rows="5" placeholder="에이전트 조율 메모를 입력하세요."></textarea>
+            <button type="submit">메모 저장</button>
+          </form>
+        </aside>
+      </main>
+
+      <section id="checklist" aria-label="점검 체크리스트">
+        <fieldset>
+          <legend>배포 전 점검</legend>
+          <label><input type="checkbox" name="check-runtime"> 런타임 상태 확인</label>
+          <label><input type="checkbox" name="check-logs"> 로그 에러 확인</label>
+          <label><input type="checkbox" name="check-tasks"> 작업 대기열 확인</label>
+        </fieldset>
+      </section>
+    </div>
+  </div>
+
+  <script src="data.js" defer></script>
+  <script src="state.js" defer></script>
+  <script src="ui.js" defer></script>
+  <script src="log.js" defer></script>
+</body>
+</html>
